@@ -1,0 +1,48 @@
+{% extends 'main/main.html' %}
+    {% block nav %}
+        <li class="nav-item ">
+            <a class="nav-link" href="{% url 'homepage' %}">Домашня сторінка</a>
+        </li>
+        {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'cabinet' %}">Моя інформація</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'queue' %}">Черги</a>
+            </li>
+        {% endif %}
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'doctors_list' %}">Список лікарів<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'reception' %}">Записатися до лікаря</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'reform' %}">Медична реформа</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Контакти</a>
+        </li>
+    {% endblock %}
+    {% block content %}
+         <div class="centralblock">
+            {% for doctor in doctors %}
+                <table>
+                    <tr>
+                        <td width="20%">
+                            <img src="{{ doctor.Photo.url }}" height="150px" width=""/>
+                        </td>
+                        <td width="30%">
+                            <h4 class="incentralblockleft">{{ doctor.Surname }} {{ doctor.Name }} {{ doctor.Patronymic }}</h4>
+                            <p class="incentralblockleft">Спеціальність: {{ doctor.Specialty.Specialty }}</p>
+                            <p class="incentralblockleft">Зв'язок: {{ doctor.Phone }} <br> {{ doctor.Email }}</p>
+                        </td>
+                        <td width="50%">
+                            <p class="incentralblockleft"> {{ doctor.Specialty.Description }}</p>
+                        </td>
+                    </tr>
+                </table>
+                <hr>
+            {% endfor %}
+        </div>
+    {% endblock %}

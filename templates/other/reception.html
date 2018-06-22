@@ -1,0 +1,48 @@
+{% extends 'main/main.html' %}
+    {% block nav %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'homepage' %}">Домашня сторінка</a>
+        </li>
+        {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'cabinet' %}">Моя інформація</a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="{% url 'queue' %}">Черги</a>
+            </li>
+        {% endif %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'doctors_list' %}">Список лікарів</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'reception' %}">Записатися до лікаря<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'reform' %}">Медична реформа</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Контакти</a>
+        </li>
+    {% endblock %}
+    {% block content %}
+        <div class="centralblock">
+            {% for doctor in doctors %}
+                <form action="{% url 'reception_info' id_d=doctor.id_d %}" method="post">
+                    {% csrf_token %}
+                    <table>
+                        <tr>
+                            <td class="incentralblock mt-2 mr-4" width="40%">
+                                {{ doctor.Surname }} {{ doctor.Name }} {{ doctor.Patronymic }} <br> {{ doctor.Specialty }}
+                            </td>
+                            <td class="incentralblock mt-2 mr-4" width="20%">
+                                <label>Дата: {{ receip.Date }}</label>
+                            </td>
+                            <td class="ml-4" width="20%">
+                                <input type="submit" class="btn btn-outline-secondary" value="Записатися">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            {% endfor %}
+        </div>
+    {% endblock %}

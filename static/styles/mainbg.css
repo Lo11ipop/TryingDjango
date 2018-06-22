@@ -1,0 +1,31 @@
+.mainbg{
+    background-image: url('/static/image/bg.jpg');
+}
+
+.centralblock {
+    alignment: center;
+    background: #008cba;
+    border-radius: 10px;
+    margin: 3%;
+    padding: 2%;
+}
+
+.incentralblock {
+    color: honeydew;
+    text-align: center;
+}
+
+.incentralblockleft{
+    color: honeydew;
+    text-align: left;
+}
+
+.regform{
+    color: aliceblue;
+    text-align: left;
+}
+
+.nameonform{
+    color: aliceblue;
+    margin-right: 2px;
+}

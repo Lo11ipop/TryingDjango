@@ -1,0 +1,75 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Електронна карта</title>
+
+    <!-- Title Icon -->
+    <link rel="icon" href="{% static 'image/icon16.png' %}">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'styles/mainbg.css' %}">
+
+    <!-- Image -->
+    <link rel="import" href="{% static 'image' %}">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/yeti/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+</head>
+<body class="mainbg">
+    <!-- Head Menu -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                 <a href="/"><img class="nav-link" src="/static/image/icon16_white.png"></img></a>
+            </li>
+            {% block nav %}
+            {% endblock %}
+        </ul>
+      </div>
+        {% if user.is_authenticated %}
+            <div>
+                <table>
+                    <tr>
+                        <td>
+                            <label class="incentralblock mr-4">{{ user.username }}</label>
+                        </td>
+                        <td>
+                            <form action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <input type="submit" value="Вийти" class="btn btn-outline-secondary">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        {% else %}
+            <div>
+                <input value="Реєстрація"
+                       type="button"
+                       class="btn btn-outline-secondary mr-2"
+                       onclick=" location.href='{% url "registration" %}'">
+                </input>
+                <input type="button" class="btn btn-outline-secondary" value="Увійти" onclick=" location.href='{% url "login" %}'"></input>
+            </div>
+        {% endif %}
+    </nav>
+
+    <!-- Body -->
+    {% block content %}
+    {% endblock %}
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+</body>
+</html>

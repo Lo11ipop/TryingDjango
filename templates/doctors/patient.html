@@ -1,0 +1,40 @@
+{% extends 'main/main.html' %}
+    {% block nav %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'homepage' %}">Домашня сторінка</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'patient_list' %}">Мої пацієнти<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'reform' %}">Медична реформа</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Контакти</a>
+        </li>
+    {% endblock %}
+    {% block content %}
+        <div class="centralblock">
+
+                {% for receip in receips %}
+                    <table>
+                    <tr>
+                        <td class="incentralblock">
+                            <a href="{% url 'information_patient' pat=receip.Patient.Login %}" class="incentralblock">{{ receip.Patient.Surname }} {{ receip.Patient.Name }} {{ receip.Patient.Patronymic }}</a>
+                        </td>
+                        <td class="incentralblock pl-4">
+                            Телефон: {{ receip.Patient.Phone }}
+                        </td>
+                        <td class="incentralblock pl-4">
+                            Email: {{ receip.Patient.Email }}
+                        </td>
+                        <td class="incentralblock pl-4">
+                            Дата прийому: {{ receip.Date }}
+                        </td>
+                    </tr>
+                    </table>
+                    <hr>
+                {% endfor %}
+
+        </div>
+    {% endblock %}

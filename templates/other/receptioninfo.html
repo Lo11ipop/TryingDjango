@@ -1,0 +1,50 @@
+{% extends 'main/main.html' %}
+    {% block nav %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'homepage' %}">Домашня сторінка</a>
+        </li>
+        {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'cabinet' %}">Моя інформація</a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="{% url 'queue' %}">Черги</a>
+            </li>
+        {% endif %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'doctors_list' %}">Список лікарів</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'reception' %}">Записатися до лікаря</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'reform' %}">Медична реформа</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Контакти</a>
+        </li>
+    {% endblock %}
+    {% block content %}
+        <div class="centralblock">
+            <table>
+                <tr>
+                    <td>
+                        <h4 class="incentralblockleft pb-4 mt-4 mr-2">Лікар</h4>
+                        <div><label class="incentralblockleft pl-4">Ім'я: {{ form.Doctor.Name }}</label></div>
+                        <div><label class="incentralblockleft pl-4">По батькові: {{ form.Doctor.Patronymic }}</label></div>
+                        <div><label class="incentralblockleft pl-4">Прізвище: {{ form.Doctor.Surname }}</label></div>
+                        <div><label class="incentralblockleft pl-4">Спеціальність: {{ form.Doctor.Specialty }}</label></div>
+                    </td>
+                    <td>
+                        <h4 class="incentralblockleft pb-4 mr-2">Пацієнт</h4>
+                        <div><label class="incentralblockleft pl-4">Ім'я: {{ form.Patient.Name }}</label></div>
+                        <div><label class="incentralblockleft pl-4">По батькові: {{ form.Patient.Patronymic }}</label></div>
+                        <div><label class="incentralblockleft pl-4">Прізвище: {{ form.Patient.Surname }}</label></div>
+                    </td>
+                </tr>
+            </table>
+            <hr>
+            <div><label class="incentralblockleft pl-4">Дата прийому: {{ form.Date }}</label></div>
+        </div>
+
+    {% endblock %}

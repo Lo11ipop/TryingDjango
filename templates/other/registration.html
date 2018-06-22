@@ -1,0 +1,47 @@
+{% extends 'main/main.html' %}
+    {% block nav %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'homepage' %}">Домашня сторінка</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'doctors_list' %}">Список лікарів</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'reception' %}">Записатися до лікаря</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'reform' %}">Медична реформа</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Контакти</a>
+        </li>
+    {% endblock %}
+    {% block content %}
+        <form method="post" class="centralblock" action="{% url 'registration' %}">
+            {% csrf_token %}
+            <h4 class="incentralblockleft pb-4">Дані для входу</h4>
+            <div><label class="incentralblockleft pl-4">{{ user.username }} Логін</label></div>
+            <div><label class="incentralblockleft pl-4">{{ user.password1 }} Пароль</label></div>
+            <div><label class="incentralblockleft pl-4">{{ user.password2 }} Повторіть пароль</label></div>
+            <h4 class="incentralblockleft pb-4 pt-4">Особисті дані</h4>
+            <div><label class="incentralblockleft pl-4">{{ patient.Name }} Ім'я</label></div>
+            <div><label class="incentralblockleft pl-4">{{ patient.Patronymic }} По батькові</label></div>
+            <div><label class="incentralblockleft pl-4">{{ patient.Surname }} Прізвище</label></div>
+            <div><label class="incentralblockleft pl-4">{{ patient.Phone }} Номер телефону</label></div>
+            <div><label class="incentralblockleft pl-4">{{ patient.Email }} mail</label></div>
+            <h4 class="incentralblockleft pb-4 pt-4">Адреса</h4>
+            <div><label class="incentralblockleft pl-4">{{ address.Region }} Область</label></div>
+            <div><label class="incentralblockleft pl-4">{{ address.Locality }} Місто</label></div>
+            <div><label class="incentralblockleft pl-4">{{ address.Town_Index }} Індекс</label></div>
+            <div><label class="incentralblockleft pl-4">{{ address.Post_Number }} Номер почтового відділення</label></div>
+            <div><label class="incentralblockleft pl-4">{{ address.Street }} Вулиця</label></div>
+            <div><label class="incentralblockleft pl-4">{{ address.House }} Будинок</label></div>
+            <div><label class="incentralblockleft pl-4">{{ address.Apart_Number }} Квартира</label></div>
+            <h4 class="incentralblockleft pb-4 pt-4">Дані щодо медичної картки</h4>
+            <div><label class="incentralblockleft pl-4">{{ medcard.Receipt_Date }} Дата отримання медичної картки (YYYY-mm-dd)</label></div>
+            <div><label class="incentralblockleft pl-4">{{ medcard.Birthday }} День народження (YYYY-mm-dd)</label></div>
+            <div><label class="incentralblockleft pl-4">{{ medcard.Work_Place }} Місце роботи</label></div>
+            <div><label class="incentralblockleft pl-4">{{ medcard.Position }} Посада</label></div>
+            <input type="submit" class="btn btn-outline-secondary ml-4 mt-4" value="Зареєструватися">
+        </form>
+    {% endblock %}

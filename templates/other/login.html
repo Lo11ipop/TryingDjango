@@ -1,0 +1,27 @@
+{% extends 'main/main.html' %}
+    {% block nav %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'homepage' %}">Домашня сторінка</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'doctors_list' %}">Список лікарів</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'reform' %}">Медична реформа</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Контакти</a>
+        </li>
+    {% endblock %}
+    {% block content %}
+        <form action="{% url 'login' %}" method="post" class="centralblock">
+            {% csrf_token %}
+            <h4 class="incentralblockleft pb-4">Вхід</h4>
+            <div><label class="incentralblockleft pl-4">{{ form.username }} Логін</label></div>
+            <div><label class="incentralblockleft pl-4">{{ form.password }} Пароль</label></div>
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
+            <input type="submit" class="btn btn-outline-secondary ml-4 mt-4" value="Увійти">
+        </form>
+    {% endblock %}

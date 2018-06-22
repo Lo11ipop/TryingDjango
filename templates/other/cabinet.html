@@ -1,0 +1,47 @@
+{% extends 'main/main.html' %}
+    {% block nav %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'homepage' %}">Домашня сторінка</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'cabinet' %}">Моя інформація<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+                <a class="nav-link" href="{% url 'queue' %}">Черги</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'doctors_list' %}">Список лікарів</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'reception' %}">Записатися до лікаря</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'reform' %}">Медична реформа</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Контакти</a>
+        </li>
+    {% endblock %}
+    {% block content %}
+        <div class="centralblock">
+            <h4 class="incentralblockleft pb-4 pt-4">Особисті дані</h4>
+            <div><label class="incentralblockleft pl-4">Ім'я: {{ patient.Name }}</label></div>
+            <div><label class="incentralblockleft pl-4">По батькові: {{ patient.Patronymic }}</label></div>
+            <div><label class="incentralblockleft pl-4">Прізвище: {{ patient.Surname }}</label></div>
+            <div><label class="incentralblockleft pl-4">Номер телефону: {{ patient.Phone }}</label></div>
+            <div><label class="incentralblockleft pl-4">Email: {{ patient.Email }}</label></div>
+            <h4 class="incentralblockleft pb-4 pt-4">Адреса</h4>
+            <div><label class="incentralblockleft pl-4">Область: {{ address.Region }}</label></div>
+            <div><label class="incentralblockleft pl-4">Місто: {{ address.Locality }}</label></div>
+            <div><label class="incentralblockleft pl-4">Індекс: {{ address.Town_Index }}</label></div>
+            <div><label class="incentralblockleft pl-4">Номер почтового відділення: {{ address.Post_Number }} </label></div>
+            <div><label class="incentralblockleft pl-4">Вулиця: {{ address.Street }} </label></div>
+            <div><label class="incentralblockleft pl-4">Будинок: {{ address.House }} </label></div>
+            <div><label class="incentralblockleft pl-4">Квартира: {{ address.Apart_Number }} </label></div>
+            <h4 class="incentralblockleft pb-4 pt-4">Дані щодо медичної картки</h4>
+            <div><label class="incentralblockleft pl-4">Дата отримання медичної картки: {{ medcard.Receipt_Date }}</label></div>
+            <div><label class="incentralblockleft pl-4">День народження: {{ medcard.Birthday }}</label></div>
+            <div><label class="incentralblockleft pl-4">Місце роботи: {{ medcard.Work_Place }} </label></div>
+            <div><label class="incentralblockleft pl-4">Посада: {{ medcard.Position }} </label></div>
+        </div>
+    {% endblock %}

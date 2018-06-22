@@ -1,0 +1,35 @@
+{% extends 'main/main.html' %}
+    {% block nav %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'homepage' %}">Домашня сторінка</a>
+        </li>
+        {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'cabinet' %}">Моя інформація</a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="{% url 'queue' %}">Черги</a>
+            </li>
+        {% endif %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'doctors_list' %}">Список лікарів</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'reception' %}">Записатися до лікаря</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'reform' %}">Медична реформа</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Контакти</a>
+        </li>
+    {% endblock %}
+    {% block content %}
+        <div class="centralblock">
+            <div class="incentralblock">
+                <h4 class="pb-2">{{ article.title }}</h4>
+                <p class="incentralblockleft pb-2"><img src="{{ article.thumb.url }}" height="150px" width="" align="left" class="pr-4"/>{{ article.body }}</p>
+                <p class="incentralblockleft pb-2">{{ article.date }}</p>
+            </div>
+        </div>
+    {% endblock %}

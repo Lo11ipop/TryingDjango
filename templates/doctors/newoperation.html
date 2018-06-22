@@ -1,0 +1,27 @@
+{% extends 'main/main.html' %}
+    {% block nav %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'homepage' %}">Домашня сторінка</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'patient_list' %}">Мої пацієнти</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'reform' %}">Медична реформа</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Контакти</a>
+        </li>
+    {% endblock %}
+    {% block content %}
+        <div class="centralblock">
+            <form action="{% url 'operation' pat=pat %}" method="post">
+                {% csrf_token %}
+                <div class="incentralblockleft"><label>Назва</label></div>
+                <div>{{ PO.Name }}</div>
+                <div class="incentralblockleft"><label>Деталі</label></div>
+                <div>{{ PO.Description }}</div>
+                <div><input type="submit" class="btn btn-outline-secondary mt-2" value="Підтвердити"></div>
+            </form>
+        </div>
+    {% endblock %}

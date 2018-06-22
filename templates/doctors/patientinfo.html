@@ -1,0 +1,76 @@
+{% extends 'main/main.html' %}
+    {% block nav %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'homepage' %}">Домашня сторінка</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'patient_list' %}">Мої пацієнти</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'reform' %}">Медична реформа</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Контакти</a>
+        </li>
+    {% endblock %}
+    {% block content %}
+        <div class="centralblock">
+
+            <div class="tabbable">
+                <ul class="nav nav-tabs">
+                    <li class="mr-4 active"><a href="#tab1" data-toggle="tab" class="incentralblock">Хвороби</a></li>
+                    <li class="mr-4"><a href="#tab2" data-toggle="tab" class="incentralblock">Операції</a></li>
+                    <li class="mr-4"><a href="#tab3" data-toggle="tab" class="incentralblock">Алергії</a></li>
+                    <li class="mr-4"><a href="#tab4" data-toggle="tab" class="incentralblock">Щеплення</a></li>
+                    <li><a href="#tab5" data-toggle="tab" class="incentralblock">Хронічні хвороби</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1">
+                        <h3 class="incentralblockleft mt-2">Хвороби</h3>
+                        <input type="button" class="btn btn-outline-secondary mt-2" value="Додати" onclick=" location.href='{% url "history" pat=pat %}'"></input>
+                        {% for patients in PH %}
+                            <h4 class="incentralblockleft mt-4">{{ patients.Diag }}</h4>
+                            <p class="incentralblockleft">{{ patients.Epicris }}</p>
+                            <hr>
+                        {% endfor %}
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                        <h3 class="incentralblockleft mt-2">Операції</h3>
+                        <input type="button" class="btn btn-outline-secondary mt-2" value="Додати" onclick=" location.href='{% url "operation" pat=pat %}'"></input>
+                        {% for patients in PO %}
+                            <h4 class="incentralblockleft mt-4">{{ patients.Name }}</h4>
+                            <p class="incentralblockleft">{{ patients.Description }}</p>
+                            <hr>
+                        {% endfor %}
+                    </div>
+                    <div class="tab-pane" id="tab3">
+                        <h3 class="incentralblockleft mt-2">Алергії</h3>
+                        <input type="button" class="btn btn-outline-secondary mt-2" value="Додати" onclick=" location.href='{% url "alergik" pat=pat %}'"></input>
+                        {% for patients in PA %}
+                            <h4 class="incentralblockleft mt-4">{{ patients.Name }}</h4>
+                            <hr>
+                        {% endfor %}
+                    </div>
+                    <div class="tab-pane" id="tab4">
+                        <h3 class="incentralblockleft mt-2">Щеплення</h3>
+                        <input type="button" class="btn btn-outline-secondary mt-2" value="Додати" onclick=" location.href='{% url "graft" pat=pat %}'"></input>
+                        {% for patients in PG %}
+                            <h4 class="incentralblockleft mt-4">{{ patients.Name }}</h4>
+                            <p class="incentralblockleft">{{ patients.Date }}</p>
+                            <hr>
+                        {% endfor %}
+                    </div>
+                    <div class="tab-pane" id="tab5">
+                        <h3 class="incentralblockleft mt-2">Хронічні хвороби</h3>
+                        <input type="button" class="btn btn-outline-secondary mt-2" value="Додати" onclick=" location.href='{% url "chronik" pat=pat %}'"></input>
+                        {% for patients in PC %}
+                            <h4 class="incentralblockleft mt-4">{{ patients.Name }}</h4>
+                            <hr>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    {% endblock %}

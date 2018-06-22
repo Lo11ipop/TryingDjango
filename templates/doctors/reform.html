@@ -1,0 +1,22 @@
+{% extends 'main/main.html' %}
+    {% block nav %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'homepage' %}">Домашня сторінка</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'patient_list' %}">Мої пацієнти</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'reform' %}">Медична реформа<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Контакти</a>
+        </li>
+    {% endblock %}
+    {% block content %}
+        <div class="centralblock">
+            <img src="/static/image/1.PNG" width="100%">
+            <img src="/static/image/2.PNG" width="100%">
+            <img src="/static/image/3.PNG" width="100%">
+        </div>
+    {% endblock %}
